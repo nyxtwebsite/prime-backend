@@ -1,0 +1,431 @@
+import type { GlobalConfig } from "payload";
+
+export const SiteSettings: GlobalConfig = {
+  slug: "site-settings",
+  label: "Site & Brand Settings",
+  admin: {
+    group: "Settings",
+  },
+  access: {
+    read: () => true,
+    update: ({ req: { user } }) => Boolean(user),
+  },
+  fields: [
+    {
+      name: "brandName",
+      type: "text",
+      label: "Brand Name",
+      defaultValue: "Prime Vessels",
+      required: true,
+    },
+    {
+      name: "tagline",
+      type: "text",
+      label: "Tagline",
+      defaultValue: "Premium Crockery & Cutlery Showcase",
+    },
+    {
+      name: "ogImage",
+      type: "upload",
+      relationTo: "media",
+      label: "OpenGraph / Social Sharing Preview Image",
+    },
+    {
+      name: "metaKeywords",
+      type: "text",
+      label: "Meta Keywords (SEO)",
+      defaultValue: "Prime Vessels, crockery Kerala, cutlery Ettumanoor, dinnerware sets, luxury tableware, bone china plates, porcelain dining, hotel tableware Kerala",
+    },
+    {
+      name: "address",
+      type: "textarea",
+      label: "Physical Address",
+      defaultValue: "Pattithanam - Manarcadu Byp Rd, Ettumanoor, Kerala 686631",
+      required: true,
+    },
+    {
+      name: "contactPhone",
+      type: "text",
+      label: "Contact Phone Number",
+      defaultValue: "080865 80402",
+      required: true,
+    },
+    {
+      name: "contactEmail",
+      type: "text",
+      label: "Contact Email",
+      defaultValue: "info@primevessels.com",
+    },
+    {
+      name: "instagramUrl",
+      type: "text",
+      label: "Instagram URL",
+      defaultValue: "https://www.instagram.com/prime_vessels/",
+    },
+    {
+      name: "facebookUrl",
+      type: "text",
+      label: "Facebook URL",
+      defaultValue: "",
+    },
+    {
+      name: "aboutSummary",
+      type: "textarea",
+      label: "Short About Summary for Footer",
+      defaultValue: "Prime Vessels is Kerala's premier destination for luxury crockery, bespoke cutlery, and elegant tableware curated for homes and fine dining establishments.",
+    },
+    {
+      name: "showroomHours",
+      type: "text",
+      label: "Showroom Operating Hours",
+      defaultValue: "Monday - Saturday: 9:30am – 7:30pm",
+    },
+    {
+      name: "sundayHours",
+      type: "text",
+      label: "Sunday Operating Schedule",
+      defaultValue: "Sunday: By Appointment",
+    },
+    {
+      name: "showAboutPage",
+      type: "checkbox",
+      label: "Enable About Page",
+      defaultValue: true,
+      admin: {
+        description: "When disabled, hides About from Navbar/Footer and returns 404 on the /about route.",
+      },
+    },
+    {
+      name: "aboutTitle",
+      type: "text",
+      label: "About Page Main Title",
+      defaultValue: "Hello, We are Prime Vessels.",
+    },
+    {
+      name: "aboutSubtitle",
+      type: "text",
+      label: "About Page Subtitle",
+      defaultValue: "Premium Crockery & Cutlery Showcase",
+    },
+    {
+      name: "aboutDescription1",
+      type: "textarea",
+      label: "About Story Paragraph 1",
+      defaultValue: "Located in Ettumanoor, Kerala, Prime Vessels is dedicated to bringing world-class tableware, porcelain dinnerware, and bespoke cutlery to discerning homeowners, luxury restaurants, and hospitality professionals.",
+    },
+    {
+      name: "aboutDescription2",
+      type: "textarea",
+      label: "About Story Paragraph 2",
+      defaultValue: "Every piece in our catalogue is chosen for its timeless aesthetic, tactile balance, and enduring durability — creating dining moments that linger in memory long after the meal is complete. We provide touch-and-feel showroom consultations, reliable banquet supply, and direct WhatsApp support for custom collections.",
+    },
+    {
+      name: "logoDark",
+      type: "upload",
+      relationTo: "media",
+      label: "Brand Logo Dark (Navbar / Header)",
+    },
+    {
+      name: "logoLight",
+      type: "upload",
+      relationTo: "media",
+      label: "Brand Logo Light (Footer)",
+    },
+    {
+      name: "favicon",
+      type: "upload",
+      relationTo: "media",
+      label: "Website Favicon / Icon",
+    },
+    {
+      name: "aboutGallery",
+      type: "array",
+      label: "About Page Image Gallery (up to 5 images)",
+      fields: [
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "aboutFeatures",
+      type: "array",
+      label: "About Page Feature Cards",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "description",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "brandStoryHighlights",
+      type: "array",
+      label: "Homepage Brand Story Highlights",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "description",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "showAnnouncementBar",
+      type: "checkbox",
+      label: "Show Top Announcement Bar",
+      defaultValue: false,
+    },
+    {
+      name: "announcementText",
+      type: "text",
+      label: "Announcement Bar Text",
+      defaultValue: "Showroom: Ettumanoor, Kottayam, Kerala",
+    },
+    {
+      name: "announcementActionText",
+      type: "text",
+      label: "Announcement Action Label",
+      defaultValue: "WhatsApp Direct",
+    },
+    {
+      name: "navLinks",
+      type: "array",
+      label: "Navigation Menu Links",
+      fields: [
+        {
+          name: "label",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "path",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "navbarWhatsAppLabel",
+      type: "text",
+      label: "Navbar WhatsApp Button Text",
+      defaultValue: "WhatsApp Us",
+    },
+    {
+      name: "footerCollectionsTitle",
+      type: "text",
+      label: "Footer Collections Column Heading",
+      defaultValue: "Curated Collections",
+    },
+    {
+      name: "footerExploreTitle",
+      type: "text",
+      label: "Footer Explore Pages Column Heading",
+      defaultValue: "Explore Pages",
+    },
+    {
+      name: "footerQuickLinks",
+      type: "array",
+      label: "Footer Quick Links",
+      fields: [
+        {
+          name: "label",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "path",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "footerSocialLinks",
+      type: "array",
+      label: "Footer Social Media Channels",
+      fields: [
+        {
+          name: "platform",
+          type: "select",
+          options: [
+            { label: "Instagram", value: "instagram" },
+            { label: "Facebook", value: "facebook" },
+            { label: "WhatsApp", value: "whatsapp" },
+            { label: "YouTube", value: "youtube" },
+            { label: "Pinterest", value: "pinterest" },
+          ],
+          required: true,
+        },
+        {
+          name: "url",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "aboutHeroImage",
+      type: "upload",
+      relationTo: "media",
+      label: "About Page Top Banner Image",
+    },
+    {
+      name: "aboutStats",
+      type: "array",
+      label: "About Page Numbers & Achievements",
+      fields: [
+        {
+          name: "number",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "label",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "aboutDeliverySectionTitle",
+      type: "text",
+      label: "About Page Banquet & Delivery Section Title",
+      defaultValue: "Kerala-Wide & Bulk Tableware Delivery",
+    },
+    {
+      name: "aboutDeliverySectionDescription",
+      type: "textarea",
+      label: "About Page Banquet & Delivery Description",
+      defaultValue: "From curated dining sets for luxury private residences to large-scale banquet supplies for hotels and catering professionals across Kerala.",
+    },
+    {
+      name: "aboutDeliveryCtaLabel",
+      type: "text",
+      label: "About Page Delivery CTA Label",
+      defaultValue: "Enquire via WhatsApp",
+    },
+    {
+      name: "aboutDeliveryBgImage",
+      type: "upload",
+      relationTo: "media",
+      label: "About Page Banquet & Delivery Parallax Background Image",
+    },
+    {
+      name: "contactHeroImage",
+      type: "upload",
+      relationTo: "media",
+      label: "Contact Page Top Banner Image",
+    },
+    {
+      name: "contactHeading",
+      type: "text",
+      label: "Contact Page Heading",
+      defaultValue: "Get in Touch with Our Tableware Experts",
+    },
+    {
+      name: "contactSubheading",
+      type: "textarea",
+      label: "Contact Page Subheading",
+      defaultValue: "Whether you are curating a luxury dining set for your home or placing a bulk order for a restaurant or banquet venue, we are here to assist.",
+    },
+    {
+      name: "contactMapEmbedUrl",
+      type: "text",
+      label: "Showroom Google Maps Embed URL",
+      defaultValue: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.8824147770857!2d76.5594002!3d9.6053896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b062b9f84824d67%3A0xe54d8ef86b5daae!2sPrime%20Vessels!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+    },
+    {
+      name: "contactFormSubjects",
+      type: "array",
+      label: "Contact Form Subject Options",
+      fields: [
+        {
+          name: "label",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "productsHeroImage",
+      type: "upload",
+      relationTo: "media",
+      label: "All Products Page Top Banner Image",
+    },
+    {
+      name: "productsPageTitle",
+      type: "text",
+      label: "Catalogue Page Title",
+      defaultValue: "Our Catalogue",
+    },
+    {
+      name: "productsPageSubtitle",
+      type: "textarea",
+      label: "Catalogue Page Subtitle",
+      defaultValue: "Explore our complete range of luxury crockery, bone china dinnerware, forged cutlery, and crystal glassware.",
+    },
+    {
+      name: "categoriesHeroImage",
+      type: "upload",
+      relationTo: "media",
+      label: "Categories Page Top Banner Image",
+    },
+    {
+      name: "categoriesPageTitle",
+      type: "text",
+      label: "Categories Page Title",
+      defaultValue: "All Categories",
+    },
+    {
+      name: "categoriesPageSubtitle",
+      type: "textarea",
+      label: "Categories Page Subtitle",
+      defaultValue: "Browse our crockery, cutlery, and tableware collections.",
+    },
+    {
+      name: "deliveryGuaranteeTitle",
+      type: "text",
+      label: "Product Page Delivery Guarantee Tab Heading",
+      defaultValue: "Secure Fragile-Cargo Delivery & Replacement Guarantee",
+    },
+    {
+      name: "deliveryGuaranteeText",
+      type: "textarea",
+      label: "Product Page Delivery Guarantee Tab Details",
+      defaultValue: "All Prime Vessels shipments are packed with multi-layered shock-absorbing protection designed specifically for luxury crockery and glassware. In the unlikely event of transit damage, notify our team via WhatsApp within 48 hours for immediate replacement.",
+    },
+    {
+      name: "hospitalityCurationTitle",
+      type: "text",
+      label: "Product Page Hospitality Curation Tab Heading",
+      defaultValue: "Hospitality & Banquet Curation",
+    },
+    {
+      name: "hospitalityCurationText",
+      type: "textarea",
+      label: "Product Page Hospitality Curation Tab Details",
+      defaultValue: "We offer specialized volume pricing and personalized sample inspection for hotels, catering services, banquet halls, and wedding gifting registries across Kerala.",
+    },
+    {
+      name: "copyrightText",
+      type: "text",
+      label: "Footer Copyright Notice",
+      defaultValue: "All rights reserved.",
+    },
+  ],
+};
