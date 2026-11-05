@@ -46,7 +46,7 @@ backend/
 │   │
 │   ├── globals/                             # Payload Singletons (Global Settings)
 │   │   ├── SiteSettings.ts                  # Showroom hours, brand logos, delivery guarantees, SEO
-│   │   ├── HomepageSettings.ts              # Section visibility toggles, hero slides, collage
+│   │   ├── HomepageSettings.ts              # Section visibility toggles, section copy, collage
 │   │   └── WhatsAppSettings.ts              # Hotline number & enquiry template strings
 │   │
 │   ├── app/                                 # Next.js App Router for Payload
@@ -110,8 +110,7 @@ backend/
 * **Site Structure**: Controls Page Headers, Footer Navigation Links, and Announcement Bar configurations.
 
 ### 2. `HomepageSettings` (`src/globals/HomepageSettings.ts`)
-* **Layout Controller**: Features master visibility toggles (`showHero`, `showCategories`, `showPromoBanner`, `showFeaturedProducts`, `showSelectedCategory`, `showBrandStory`) allowing admins to construct the frontend layout without coding.
-* **Hero Settings**: Configures the Hero image/video, subtitles, and CTA buttons.
+* **Layout Controller**: Features master visibility toggles (`showCategories`, `showPromoBanner`, `showFeaturedProducts`, `showSelectedCategory`, `showBrandStory`) allowing admins to construct the frontend layout without coding.
 * **Spotlight**: The `selectedCategory` relationship determines exactly which category to feature on the homepage.
 
 ### 3. `WhatsAppSettings` (`src/globals/WhatsAppSettings.ts`)
@@ -126,7 +125,6 @@ For developers working across the stack, this section maps exactly which Payload
 | CMS Collection / Global | Payload Field | Frontend Component | Location on Website |
 | :--- | :--- | :--- | :--- |
 | **HomepageSettings** | `show[Section]` toggles | `app/page.tsx` | Homepage Layout Blocks (Hides/Shows entire sections) |
-| **HomepageSettings** | `heroMedia` | `Carousel.tsx` | Top Homepage Hero slider (Supports Video/Image) |
 | **HomepageSettings** | `selectedCategory` | `SelectedCategorySection.tsx` | The "Signature Collection" spotlight block on the homepage |
 | **SiteSettings** | `logoLight`, `logoDark` | `Navbar.tsx`, `Footer.tsx` | Site-wide headers and footers |
 | **SiteSettings** | `address`, `showroomHours` | `InfoAndForm.tsx` | Contact Page (`/contact`) and Footer |

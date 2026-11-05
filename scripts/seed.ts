@@ -612,23 +612,12 @@ async function seed() {
     await payload.updateGlobal({
       slug: "homepage-settings",
       data: ({
-        showHero: true,
         showCategories: true,
         showPromoBanner: true,
         showFeaturedProducts: true,
         showSelectedCategory: true,
         showTestimonials: true,
         showGalleryGrid: true,
-        heroType: "image",
-        heroMedia: mediaMap["banner-1.png"]?.id || defaultMediaId,
-        heroSubtitle: "Signature Collection",
-        heroTitle: "Elegance in Every Vessel",
-        heroSubtext:
-          "Discover our curated collection of premium crockery, cutlery, and luxury dining essentials.",
-        heroCtaLabel: "Explore Collection",
-        heroCtaLink: "/products",
-        heroSecondaryCtaLabel: "Contact Showroom",
-        heroSecondaryCtaLink: "/contact",
         categoriesSectionBadge: "Curated Collections",
         categoriesSectionTitle: "Categories",
         categoriesSectionSubtext: "Browse our crockery, cutlery, and tableware collections.",
