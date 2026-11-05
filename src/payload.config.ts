@@ -27,24 +27,15 @@ import { SiteSettings } from "./globals/SiteSettings";
 import { HomepageSettings } from "./globals/HomepageSettings";
 import { WhatsAppSettings } from "./globals/WhatsAppSettings";
 
-const s3Bucket = process.env.S3_BUCKET || process.env.AWS_BUCKET;
-const s3AccessKeyId =
-  process.env.S3_ACCESS_KEY_ID ||
-  process.env.AWS_ACCESS_KEY_ID ||
-  process.env.aws_access_key_id;
-const s3SecretAccessKey =
-  process.env.S3_SECRET_ACCESS_KEY ||
-  process.env.AWS_SECRET_ACCESS_KEY ||
-  process.env.aws_secret_access_key;
-const s3Endpoint =
-  process.env.S3_ENDPOINT ||
-  process.env.ENDPOINT_URL ||
-  process.env.endpoint_url;
-const s3Region =
-  process.env.S3_REGION ||
-  process.env.AWS_REGION ||
-  process.env.region ||
-  "ap-northeast-1";
+import { getMediaFileURL, getS3Config } from "./lib/mediaStorage";
+
+const {
+  bucket: s3Bucket,
+  accessKeyId: s3AccessKeyId,
+  secretAccessKey: s3SecretAccessKey,
+  endpoint: s3Endpoint,
+  region: s3Region,
+} = getS3Config();
 
 const plugins = [];
 
@@ -53,22 +44,7 @@ if (s3Bucket && s3AccessKeyId && s3SecretAccessKey) {
     s3Storage({
       collections: {
         media: {
-          generateFileURL: ({ filename, prefix }: { filename: string; prefix?: string }) => {
-            const fileKey = prefix ? `${prefix}/${filename}` : filename;
-            if (process.env.S3_PUBLIC_URL) {
-              return `${process.env.S3_PUBLIC_URL.replace(/\/+$/, "")}/${fileKey}`;
-            }
-            if (s3Endpoint && s3Endpoint.includes("storage.supabase.co")) {
-              const projectRef = s3Endpoint.match(/https?:\/\/([^.]+)\.storage\.supabase\.co/)?.[1];
-              if (projectRef) {
-                return `https://${projectRef}.supabase.co/storage/v1/object/public/${s3Bucket}/${fileKey}`;
-              }
-            }
-            if (s3Endpoint) {
-              return `${s3Endpoint.replace(/\/+$/, "")}/${s3Bucket}/${fileKey}`;
-            }
-            return `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/${fileKey}`;
-          },
+          generateFileURL: getMediaFileURL,
         },
       },
       bucket: s3Bucket,
