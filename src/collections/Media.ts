@@ -2,6 +2,8 @@ import type { CollectionConfig } from "payload";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { getMediaFileURL } from "../lib/mediaStorage";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -17,7 +19,19 @@ export const Media: CollectionConfig = {
     staticDir: process.env.VERCEL ? "/tmp" : path.resolve(dirname, "../../public/media"),
     disableLocalStorage: Boolean(process.env.S3_BUCKET || process.env.AWS_BUCKET || process.env.VERCEL || process.env.NODE_ENV === "production"),
     mimeTypes: ["image/*", "video/*"],
-    adminThumbnail: "thumbnail",
+    // A size name here would make Payload build a relative /api/media/file URL,
+    // which can't reach files in cloud storage. Images too small for the thumbnail
+    // size, or uploaded before sizes were generated, fall back to the original.
+    adminThumbnail: ({ doc }) => {
+      const sizes = doc.sizes as { thumbnail?: { filename?: string | null } } | undefined;
+      const isImage = typeof doc.mimeType === "string" && doc.mimeType.startsWith("image/");
+      const filename = sizes?.thumbnail?.filename || (isImage ? (doc.filename as string | null) : null);
+      if (!filename) return null;
+      return getMediaFileURL({
+        filename: encodeURIComponent(filename),
+        prefix: doc.prefix as string | null | undefined,
+      });
+    },
     imageSizes: [
       {
         name: "thumbnail",
