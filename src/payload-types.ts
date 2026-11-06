@@ -934,22 +934,12 @@ export interface SiteSetting {
  */
 export interface HomepageSetting {
   id: number;
-  showHero?: boolean | null;
   showCategories?: boolean | null;
   showPromoBanner?: boolean | null;
   showFeaturedProducts?: boolean | null;
   showSelectedCategory?: boolean | null;
   showTestimonials?: boolean | null;
   showGalleryGrid?: boolean | null;
-  heroType?: ('image' | 'video') | null;
-  heroMedia?: (number | null) | Media;
-  heroSubtitle?: string | null;
-  heroTitle?: string | null;
-  heroSubtext?: string | null;
-  heroCtaLabel?: string | null;
-  heroCtaLink?: string | null;
-  heroSecondaryCtaLabel?: string | null;
-  heroSecondaryCtaLink?: string | null;
   categoriesSectionBadge?: string | null;
   categoriesSectionTitle?: string | null;
   categoriesSectionSubtext?: string | null;
@@ -1112,22 +1102,12 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "homepage-settings_select".
  */
 export interface HomepageSettingsSelect<T extends boolean = true> {
-  showHero?: T;
   showCategories?: T;
   showPromoBanner?: T;
   showFeaturedProducts?: T;
   showSelectedCategory?: T;
   showTestimonials?: T;
   showGalleryGrid?: T;
-  heroType?: T;
-  heroMedia?: T;
-  heroSubtitle?: T;
-  heroTitle?: T;
-  heroSubtext?: T;
-  heroCtaLabel?: T;
-  heroCtaLink?: T;
-  heroSecondaryCtaLabel?: T;
-  heroSecondaryCtaLink?: T;
   categoriesSectionBadge?: T;
   categoriesSectionTitle?: T;
   categoriesSectionSubtext?: T;

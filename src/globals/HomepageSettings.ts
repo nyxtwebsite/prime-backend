@@ -20,12 +20,6 @@ export const HomepageSettings: GlobalConfig = {
       },
       fields: [
         {
-          name: "showHero",
-          type: "checkbox",
-          label: "Show Hero Carousel / Video",
-          defaultValue: true,
-        },
-        {
           name: "showCategories",
           type: "checkbox",
           label: "Show Categories Bento Showcase",
@@ -60,75 +54,6 @@ export const HomepageSettings: GlobalConfig = {
           type: "checkbox",
           label: "Show Bottom Image Grid",
           defaultValue: true,
-        },
-      ],
-    },
-
-    // Hero Section Settings
-    {
-      type: "collapsible",
-      label: "Hero Slide / Video Settings",
-      admin: {
-        initCollapsed: false,
-      },
-      fields: [
-        {
-          name: "heroType",
-          type: "select",
-          options: [
-            { label: "Image", value: "image" },
-            { label: "Video", value: "video" },
-          ],
-          defaultValue: "image",
-          label: "Hero Media Type",
-        },
-        {
-          name: "heroMedia",
-          type: "upload",
-          relationTo: "media",
-          label: "Hero Image or Video",
-        },
-        {
-          name: "heroSubtitle",
-          type: "text",
-          label: "Hero Subtitle / Badge",
-          defaultValue: "Signature Collection",
-        },
-        {
-          name: "heroTitle",
-          type: "text",
-          label: "Hero Title",
-          defaultValue: "Elegance in Every Vessel",
-        },
-        {
-          name: "heroSubtext",
-          type: "textarea",
-          label: "Hero Subtext",
-          defaultValue: "Explore our masterfully crafted crockery, fine cutlery, and luxury dining essentials designed to elevate every table setting.",
-        },
-        {
-          name: "heroCtaLabel",
-          type: "text",
-          label: "Primary CTA Label",
-          defaultValue: "Explore Collection",
-        },
-        {
-          name: "heroCtaLink",
-          type: "text",
-          label: "Primary CTA Link",
-          defaultValue: "/products",
-        },
-        {
-          name: "heroSecondaryCtaLabel",
-          type: "text",
-          label: "Secondary CTA Label",
-          defaultValue: "Contact Showroom",
-        },
-        {
-          name: "heroSecondaryCtaLink",
-          type: "text",
-          label: "Secondary CTA Link",
-          defaultValue: "/contact",
         },
       ],
     },
